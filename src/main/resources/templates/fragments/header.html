@@ -1,0 +1,56 @@
+<header th:fragment="header">
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/">LSHANTHANH</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        
+        <li>
+          <a class="nav-link dropdown-toggle" href="/passport-1/create" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Hộ chiếu
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/passport-1/create">Trên 14 tuổi</a>
+            <a class="dropdown-item" href="/passport-2/create">Dưới 14 tuổi</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/registration-of-birth/create">KS-HC</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/registration-of-birth-certificate/create">GCKS-HC</a>
+        </li>
+
+        <li>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Thôi quốc tịch
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/renunciation-of-citizenship/create-1">Thôi quốc tịch</a>
+            <a class="dropdown-item" href="/renunciation-of-citizenship/create-2">Thôi quốc tịch dùng cho Người giám
+              hộ</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav flex-row justify-content-between ml-auto" th:if="${#request.userPrincipal != null}">
+        <li class="nav-item">
+          <a class="nav-link" th:text="${#request.userPrincipal.name}"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

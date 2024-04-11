@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <title>LSHANTHANH - Tờ khai cấp hộ chiếu</title>
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css" crossorigin="anonymous">
+  <link href="/css/sticky-footer-navbar.css" rel="stylesheet">
+  <script src="/js/jquery-3.5.1.min.js"></script>
+  <script src="/js/bootstrap-autocomplete.min.js"></script>
+  <script src="/js/jquery.mask.min.js"></script>
+  <script src="/js/app.js"></script>
+</head>
+
+<body class="d-flex flex-column h-100">
+  <div th:replace="fragments/header :: header"></div>
+  <main role="main">
+    <div class="container" style="max-width: 868px;">
+      <p class="lead mt-4" th:text="${message}">
+      </p>
+      <form id="passportForm" class="needs-validation" action="/passport-1/create" th:object="${passport}" method="post"
+        autocomplete="off" novalidate>
+
+        <!--div class="form-row">
+          <div class="col-md-4">
+            <label for="agencyName">Tên công ty</label>
+            <input type="text" class="form-control text-uppercase" id="agencyName" th:field="*{agencyName}" >
+          </div>
+        </div-->
+        <div class="form-row">
+
+          <div class="col-md-4">
+            <label for="p1FullName" class="font-weight-bold">Họ và tên</label>
+            <input type="text" class="form-control text-uppercase" id="p1FullName" th:field="*{p1FullName}" required>
+          </div>
+          <div class="col-md-2">
+            <label for="p1Gender">Giới tính</label>
+            <select id="p1Gender" class="form-control" th:field="*{p1Gender}" required>
+              <option value="" title=""></option>
+              <option value="Nam" title="Nam">Nam</option>
+              <option value="Nữ" title="Nữ">Nữ</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label for="p1DateOfBirth">Ngày sinh</label>
+            <input type="text" class="form-control" id="p1DateOfBirth" th:field="*{p1DateOfBirth}"
+              placeholder="__/__/____" required>
+          </div>
+
+          <div class="col-md-3">
+            <label for="p1PlaceOfBirth">Nơi sinh</label>
+            <select id="p1PlaceOfBirth" th:field="*{p1PlaceOfBirth}" class="form-control" title="Chọn nơi sinh"
+              required>
+              <option value="" title=""></option>
+              <option value="Abkhazia" title="Abkhazia">Abkhazia</option>
+              <option value="Afghanistan" title="Afghanistan">Afghanistan</option>
+              <option value="African" title="African">African</option>
+              <option value="Albania" title="Albania">Albania</option>
+              <option value="Algeria" title="Algeria">Algeria</option>
+              <option value="An Giang" title="An Giang">An Giang</option>
+              <option value="Andorra" title="Andorra">Andorra</option>
+              <option value="Angola" title="Angola">Angola</option>
+              <option value="Antigua and Barbuda" title="Antigua and Barbuda">Antigua and Barbuda</option>
+              <option value="Argentina" title="Argentina">Argentina</option>
+              <option value="Armenia" title="Armenia">Armenia</option>
+              <option value="Asean" title="Asean">Asean</option>
+              <option value="Australia" title="Australia">Australia</option>
+              <option value="Austria" title="Austria">Austria</option>
+              <option value="Azerbaijan" title="Azerbaijan">Azerbaijan</option>
+              <option value="Bà Rịa - Vũng Tàu" title="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
+              <option value="Bắc Giang" title="Bắc Giang">Bắc Giang</option>
+              <option value="Bắc Kạn" title="Bắc Kạn">Bắc Kạn</option>
+              <option value="Bạc Liêu" title="Bạc Liêu">Bạc Liêu</option>
+              <option value="Bắc Ninh" title="Bắc Ninh">Bắc Ninh</option>
+              <option value="Bahrain" title="Bahrain">Bahrain</option>
+              <option value="Bangladesh" title="Bangladesh">Bangladesh</option>
+              <option value="Barbados" title="Barbados">Barbados</option>
+              <option value="Belarus" title="Belarus">Belarus</option>
+              <option value="Belgium" title="Belgium">Belgium</option>
+              <option value="Belize" title="Belize">Belize</option>
+              <option value="Bến Tre" title="Bến Tre">Bến Tre</option>
+              <option value="Benin" title="Benin">Benin</option>
+              <option value="Bhutan" title="Bhutan">Bhutan</option>
+              <option value="Bình Định" title="Bình Định">Bình Định</option>
+              <option value="Bình Dương" title="Bình Dương">Bình Dương</option>
+              <option value="Bình Phước" title="Bình Phước">Bình Phước</option>
+              <option value="Bình Thuận" title="Bình Thuận">Bình Thuận</option>
+              <option value="Bolivia" title="Bolivia">Bolivia</option>
+              <option value="Bosnia and Herzegovina" title="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+              <option value="Botswana" title="Botswana">Botswana</option>
+              <option value="Brazil" title="Brazil">Brazil</option>
+              <option value="Brunei" title="Brunei">Brunei</option>
+              <option value="Bulgaria" title="Bulgaria">Bulgaria</option>
+              <option value="Burkina Faso" title="Burkina Faso">Burkina Faso</option>
+              <option value="Burundi" title="Burundi">Burundi</option>
+              <option value="Cà Mau" title="Cà Mau">Cà Mau</option>
+              <option value="Cambodia" title="Cambodia">Cambodia</option>
+              <option value="Cameroon" title="Cameroon">Cameroon</option>
+              <option value="Cần Thơ" title="Cần Thơ">Cần Thơ</option>
+              <option value="Canada" title="Canada">Canada</option>
+              <option value="Cao Bằng" title="Cao Bằng">Cao Bằng</option>
+              <option value="Cape Verde" title="Cape Verde">Cape Verde</option>
+              <option value="Chad" title="Chad">Chad</option>
+              <option value="Chile" title="Chile">Chile</option>
+              <option value="China" title="China">China</option>
+              <option value="CHLB Đức" title="CHLB Đức">CHLB Đức</option>
+              <option value="Colombia" title="Colombia">Colombia</option>
+              <option value="Comoros" title="Comoros">Comoros</option>
+              <option value="Congo" title="Congo">Congo</option>
+              <option value="Costa Rica" title="Costa Rica">Costa Rica</option>
+              <option value="Côte d’lvoire" title="Côte d’lvoire">Côte d’lvoire</option>
+              <option value="Croatia" title="Croatia">Croatia</option>
+              <option value="Cuba" title="Cuba">Cuba</option>
+              <option value="Cyprus" title="Cyprus">Cyprus</option>
+              <option value="Czech" title="Czech">Czech</option>
+              <option value="Đà Nẵng" title="Đà Nẵng">Đà Nẵng</option>
+              <option value="Đắk Lắk" title="Đắk Lắk">Đắk Lắk</option>
+              <option value="Đăk Nông" title="Đăk Nông">Đăk Nông</option>
+              <option value="Denmark" title="Denmark">Denmark</option>
+              <option value="Điện Biên" title="Điện Biên">Điện Biên</option>
+              <option value="Djibouti" title="Djibouti">Djibouti</option>
+              <option value="Dominica" title="Dominica">Dominica</option>
+              <option value="Domonican" title="Domonican">Domonican</option>
+              <option value="Đồng Nai" title="Đồng Nai">Đồng Nai</option>
+              <option value="Đồng Tháp" title="Đồng Tháp">Đồng Tháp</option>
+              <option value="East Timor" title="East Timor">East Timor</option>
+              <option value="Ecuador" title="Ecuador">Ecuador</option>
+              <option value="Egypt" title="Egypt">Egypt</option>
+              <option value="El Salvador" title="El Salvador">El Salvador</option>
+              <option value="Emirates" title="Emirates">Emirates</option>
+              <option value="Equatorial Guinea" title="Equatorial Guinea">Equatorial Guinea</option>
+              <option value="Eritrea" title="Eritrea">Eritrea</option>
+              <option value="Estonia" title="Estonia">Estonia</option>
+              <option value="Ethiopia" title="Ethiopia">Ethiopia</option>
+              <option value="Fiji" title="Fiji">Fiji</option>
+              <option value="Finland" title="Finland">Finland</option>
+              <option value="France" title="France">France</option>
+              <option value="Gabon" title="Gabon">Gabon</option>
+              <option value="Gambia" title="Gambia">Gambia</option>
+              <option value="Georgia" title="Georgia">Georgia</option>
+              <option value="Germany" title="Germany">Germany</option>
+              <option value="Ghana" title="Ghana">Ghana</option>
+              <option value="Gia Lai" title="Gia Lai">Gia Lai</option>
+              <option value="Greece" title="Greece">Greece</option>
+              <option value="Grenada" title="Grenada">Grenada</option>
+              <option value="Guatemala" title="Guatemala">Guatemala</option>
+              <option value="Guinea" title="Guinea">Guinea</option>
+              <option value="Guinea-Bissau" title="Guinea-Bissau">Guinea-Bissau</option>
+              <option value="Guyana" title="Guyana">Guyana</option>
+              <option value="Hà Giang" title="Hà Giang">Hà Giang</option>
+              <option value="Hà Nam" title="Hà Nam">Hà Nam</option>
+              <option value="Hà Nội" title="Hà Nội">Hà Nội</option>
+              <option value="Hà Tĩnh" title="Hà Tĩnh">Hà Tĩnh</option>
+              <option value="Hải Dương" title="Hải Dương">Hải Dương</option>
+              <option value="Hải Phòng" title="Hải Phòng">Hải Phòng</option>
+              <option value="Haiti" title="Haiti">Haiti</option>
+              <option value="Hàn Quốc" title="Hàn Quốc">Hàn Quốc</option>
+              <option value="Hậu Giang" title="Hậu Giang">Hậu Giang</option>
+              <option value="Hòa Bình" title="Hòa Bình">Hòa Bình</option>
+              <option value="Honduras" title="Honduras">Honduras</option>
+              <option value="Hồng Kông" title="Hồng Kông">Hồng Kông</option>
+              <option value="Hưng Yên" title="Hưng Yên">Hưng Yên</option>
+              <option value="Hungary" title="Hungary">Hungary</option>
+              <option value="Iceland" title="Iceland">Iceland</option>
+              <option value="India" title="India">India</option>
+              <option value="Indonesia" title="Indonesia">Indonesia</option>
+              <option value="Iran" title="Iran">Iran</option>
+              <option value="Iraq" title="Iraq">Iraq</option>
+              <option value="Ireland" title="Ireland">Ireland</option>
+              <option value="Israel" title="Israel">Israel</option>
+              <option value="Italy" title="Italy">Italy</option>
+              <option value="Jamaica" title="Jamaica">Jamaica</option>
+              <option value="Japan" title="Japan">Japan</option>
+              <option value="Jordan" title="Jordan">Jordan</option>
+              <option value="Kazakhstan" title="Kazakhstan">Kazakhstan</option>
+              <option value="Kenya" title="Kenya">Kenya</option>
+              <option value="Khánh Hòa" title="Khánh Hòa">Khánh Hòa</option>
+              <option value="Kiên Giang" title="Kiên Giang">Kiên Giang</option>
+              <option value="Kiribati" title="Kiribati">Kiribati</option>
+              <option value="Kon Tum" title="Kon Tum">Kon Tum</option>
+              <option value="Kuwait" title="Kuwait">Kuwait</option>
+              <option value="Kyrgyzstan" title="Kyrgyzstan">Kyrgyzstan</option>
+              <option value="Lai Châu" title="Lai Châu">Lai Châu</option>
+              <option value="Lâm Đồng" title="Lâm Đồng">Lâm Đồng</option>
+              <option value="Lạng Sơn" title="Lạng Sơn">Lạng Sơn</option>
+              <option value="Lào Cai" title="Lào Cai">Lào Cai</option>
+              <option value="Laos" title="Laos">Laos</option>
+              <option value="Latvia" title="Latvia">Latvia</option>
+              <option value="Lebanon" title="Lebanon">Lebanon</option>
+              <option value="Lesotho" title="Lesotho">Lesotho</option>
+              <option value="Liberia" title="Liberia">Liberia</option>
+              <option value="Libya" title="Libya">Libya</option>
+              <option value="Liechtenstein" title="Liechtenstein">Liechtenstein</option>
+              <option value="LIÊN BANG NGA" title="LIÊN BANG NGA">Liên bang Nga</option>
+              <option value="Lithuania" title="Lithuania">Lithuania</option>
+              <option value="Long An" title="Long An">Long An</option>
+              <option value="Luxembourg" title="Luxembourg">Luxembourg</option>
+              <option value="Macedonia" title="Macedonia">Macedonia</option>
+              <option value="Madagascar" title="Madagascar">Madagascar</option>
+              <option value="Malawi" title="Malawi">Malawi</option>
+              <option value="Malaysia" title="Malaysia">Malaysia</option>
+              <option value="Maldives" title="Maldives">Maldives</option>
+              <option value="Mali" title="Mali">Mali</option>
+              <option value="Malta" title="Malta">Malta</option>
+              <option value="Marshall Islands" title="Marshall Islands">Marshall Islands</option>
+              <option value="Mauritania" title="Mauritania">Mauritania</option>
+              <option value="Mauritius" title="Mauritius">Mauritius</option>
+              <option value="Mexico" title="Mexico">Mexico</option>
+              <option value="Micronesia" title="Micronesia">Micronesia</option>
+              <option value="Moldova" title="Moldova">Moldova</option>
+              <option value="Monaco" title="Monaco">Monaco</option>
+              <option value="Mông Cổ" title="Mông Cổ">Mông Cổ</option>
+              <option value="Morocco" title="Morocco">Morocco</option>
+              <option value="Mozambique" title="Mozambique">Mozambique</option>
+              <option value="Myanmar" title="Myanmar">Myanmar</option>
+              <option value="Nagorno-Karabakh" title="Nagorno-Karabakh">Nagorno-Karabakh</option>
+              <option value="Nam Định" title="Nam Định">Nam Định</option>
+              <option value="Namibia" title="Namibia">Namibia</option>
+              <option value="Nauru" title="Nauru">Nauru</option>
+              <option value="Nepal" title="Nepal">Nepal</option>
+              <option value="Netherlands" title="Netherlands">Netherlands</option>
+              <option value="New Zealand" title="New Zealand">New Zealand</option>
+              <option value="Nghệ An" title="Nghệ An">Nghệ An</option>
+              <option value="Nhật Bản" title="Nhật Bản">Nhật Bản</option>
+              <option value="Nicaragua" title="Nicaragua">Nicaragua</option>
+              <option value="Niger" title="Niger">Niger</option>
+              <option value="Nigeria" title="Nigeria">Nigeria</option>
+              <option value="Ninh Bình" title="Ninh Bình">Ninh Bình</option>
+              <option value="Ninh Thuận" title="Ninh Thuận">Ninh Thuận</option>
+              <option value="North Korea" title="North Korea">North Korea</option>
+              <option value="Northern Cyprus" title="Northern Cyprus">Northern Cyprus</option>
+              <option value="Norway" title="Norway">Norway</option>
+              <option value="Oman" title="Oman">Oman</option>
+              <option value="Pakistan" title="Pakistan">Pakistan</option>
+              <option value="Palau" title="Palau">Palau</option>
+              <option value="Palestine" title="Palestine">Palestine</option>
+              <option value="Panama" title="Panama">Panama</option>
+              <option value="Papua New Guinea" title="Papua New Guinea">Papua New Guinea</option>
+              <option value="Paraguay" title="Paraguay">Paraguay</option>
+              <option value="Peru" title="Peru">Peru</option>
+              <option value="Philippines" title="Philippines">Philippines</option>
+              <option value="Phú Thọ" title="Phú Thọ">Phú Thọ</option>
+              <option value="Phú Yên" title="Phú Yên">Phú Yên</option>
+              <option value="Poland" title="Poland">Poland</option>
+              <option value="Portugal" title="Portugal">Portugal</option>
+              <option value="Qatar" title="Qatar">Qatar</option>
+              <option value="Quảng Bình" title="Quảng Bình">Quảng Bình</option>
+              <option value="Quảng Nam" title="Quảng Nam">Quảng Nam</option>
+              <option value="Quảng Ngãi" title="Quảng Ngãi">Quảng Ngãi</option>
+              <option value="Quảng Ninh" title="Quảng Ninh">Quảng Ninh</option>
+              <option value="Quảng Trị" title="Quảng Trị">Quảng Trị</option>
+              <option value="Romania" title="Romania">Romania</option>
+              <option value="Russia" title="Russia">Russia</option>
+              <option value="Rwanda" title="Rwanda">Rwanda</option>
+              <option value="Saint Kitts and Nevis" title="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+              <option value="Saint Lucia" title="Saint Lucia">Saint Lucia</option>
+              <option value="Saint Vincent and the Grenadines" title="Saint Vincent and the Grenadines">Saint Vincent
+                and the Grenadines</option>
+              <option value="Samoa" title="Samoa">Samoa</option>
+              <option value="San Marino" title="San Marino">San Marino</option>
+              <option value="Saudi Arabia" title="Saudi Arabia">Saudi Arabia</option>
+              <option value="Scotland" title="Scotland">Scotland</option>
+              <option value="Senegal" title="Senegal">Senegal</option>
+              <option value="Serbia and Montenegro" title="Serbia and Montenegro">Serbia and Montenegro</option>
+              <option value="Seychelles" title="Seychelles">Seychelles</option>
+              <option value="Sierra Leone" title="Sierra Leone">Sierra Leone</option>
+              <option value="Singapore" title="Singapore">Singapore</option>
+              <option value="Slovakia" title="Slovakia">Slovakia</option>
+              <option value="Slovenia" title="Slovenia">Slovenia</option>
+              <option value="Sóc Trăng" title="Sóc Trăng">Sóc Trăng</option>
+              <option value="Solomon Islands" title="Solomon Islands">Solomon Islands</option>
+              <option value="Somalia" title="Somalia">Somalia</option>
+              <option value="Somaliland" title="Somaliland">Somaliland</option>
+              <option value="Sơn La" title="Sơn La">Sơn La</option>
+              <option value="South Africa" title="South Africa">South Africa</option>
+              <option value="South Korea" title="South Korea">South Korea</option>
+              <option value="Spain" title="Spain">Spain</option>
+              <option value="Sri Lanka" title="Sri Lanka">Sri Lanka</option>
+              <option value="Sudan" title="Sudan">Sudan</option>
+              <option value="Suriname" title="Suriname">Suriname</option>
+              <option value="Swaziland" title="Swaziland">Swaziland</option>
+              <option value="Sweden" title="Sweden">Sweden</option>
+              <option value="Switzerland" title="Switzerland">Switzerland</option>
+              <option value="Syria" title="Syria">Syria</option>
+              <option value="Tajikistan" title="Tajikistan">Tajikistan</option>
+              <option value="Tanzania" title="Tanzania">Tanzania</option>
+              <option value="Tây Ninh" title="Tây Ninh">Tây Ninh</option>
+              <option value="Thái Bình" title="Thái Bình">Thái Bình</option>
+              <option value="Thái Nguyên" title="Thái Nguyên">Thái Nguyên</option>
+              <option value="Thailand" title="Thailand">Thailand</option>
+              <option value="Thanh Hóa" title="Thanh Hóa">Thanh Hóa</option>
+              <option value="The Bahamas" title="The Bahamas">The Bahamas</option>
+              <option value="Thừa Thiên - Huế" title="Thừa Thiên - Huế">Thừa Thiên - Huế</option>
+              <option value="Tibet" title="Tibet">Tibet</option>
+              <option value="Tiền Giang" title="Tiền Giang">Tiền Giang</option>
+              <option value="Togo" title="Togo">Togo</option>
+              <option value="Tonga" title="Tonga">Tonga</option>
+              <option value="Tp. Hồ Chí Minh" title="Tp. Hồ Chí Minh">Tp. Hồ Chí Minh</option>
+              <option value="Trà Vinh" title="Trà Vinh">Trà Vinh</option>
+              <option value="Transnistria" title="Transnistria">Transnistria</option>
+              <option value="Trinidad and Tobago" title="Trinidad and Tobago">Trinidad and Tobago</option>
+              <option value="trung quốc" title="trung quốc">Trung Quốc</option>
+              <option value="Tunisia" title="Tunisia">Tunisia</option>
+              <option value="Turkey" title="Turkey">Turkey</option>
+              <option value="Turkmenistan" title="Turkmenistan">Turkmenistan</option>
+              <option value="Tuvalu" title="Tuvalu">Tuvalu</option>
+              <option value="Tuyên Quang" title="Tuyên Quang">Tuyên Quang</option>
+              <option value="Uganda" title="Uganda">Uganda</option>
+              <option value="Ukraine" title="Ukraine">Ukraine</option>
+              <option value="United Kingdom" title="United Kingdom">United Kingdom</option>
+              <option value="United States" title="United States">United States</option>
+              <option value="Uraguay" title="Uraguay">Uraguay</option>
+              <option value="Uzbekistan" title="Uzbekistan">Uzbekistan</option>
+              <option value="Vanuatu" title="Vanuatu">Vanuatu</option>
+              <option value="Vatican City" title="Vatican City">Vatican City</option>
+              <option value="Venezuela" title="Venezuela">Venezuela</option>
+              <option value="Vĩnh Long" title="Vĩnh Long">Vĩnh Long</option>
+              <option value="Vĩnh Phú" title="Vĩnh Phú">Vĩnh Phú</option>
+              <option value="Vĩnh Phúc" title="Vĩnh Phúc">Vĩnh Phúc</option>
+              <option value="Wales" title="Wales">Wales</option>
+              <option value="Western Sahara" title="Western Sahara">Western Sahara</option>
+              <option value="Yemen" title="Yemen">Yemen</option>
+              <option value="Yên Bái" title="Yên Bái">Yên Bái</option>
+              <option value="Zambia" title="Zambia">Zambia</option>
+              <option value="Zimbabwe" title="Zimbabwe">Zimbabwe</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="form-row mt-2">
+          <div class="col-md-2">
+            <label for="p1Ethnic">Dân tộc</label>
+            <input type="text" class="form-control" id="p1Ethnic" th:field="*{p1Ethnic}" required>
+          </div>
+          <div class="col-md-3">
+            <label for="p1PhoneNumber">Số điện thoại liên hệ</label>
+            <input type="text" class="form-control" id="p1PhoneNumber" th:field="*{p1PhoneNumber}">
+          </div>
+        </div>
+
+        <div class="form-row mt-2">
+          <div class="col-md-3">
+            <label for="p1PassportNumber">Số hộ chiếu cũ</label>
+            <input type="text" class="form-control text-uppercase" id="p1PassportNumber" th:field="*{p1PassportNumber}">
+          </div>
+          <div class="col-md-2">
+            <label for="p1PassportIssuedDate">Ngày cấp</label>
+            <input type="text" class="form-control" id="p1PassportIssuedDate" th:field="*{p1PassportIssuedDate}"
+              placeholder="__/__/____" maxlength="10">
+          </div>
+          <div class="col-md-4">
+            <label for="p1PassportPlaceOfIssued">Nơi cấp</label>
+            <input type="text" class="form-control" id="p1PassportPlaceOfIssued"
+              th:field="*{p1PassportPlaceOfIssued}">
+          </div>
+          <div class="col-md-3">
+            <label for="p1PassportSigner">Người ký</label>
+            <input type="text" class="form-control text-capitalize" id="p1PassportSigner"
+              data-prefetch="/ajax/passport-signer" th:field="*{p1PassportSigner}">
+          </div>
+        </div>
+
+        <div class="form-row mt-2">
+          <div class="col-md-3">
+            <label for="p1IdentityCardNumber">Số CMND/CCCD</label>
+            <input type="text" class="form-control text-uppercase" id="p1IdentityCardNumber"
+              th:field="*{p1IdentityCardNumber}">
+          </div>
+          <div class="col-md-2">
+            <label for="p1IdentityCardIssuedDate">Ngày cấp</label>
+            <input type="text" class="form-control" id="p1IdentityCardIssuedDate" th:field="*{p1IdentityCardIssuedDate}"
+              placeholder="__/__/____" maxlength="10">
+          </div>
+
+          <div class="col-md-7">
+            <label for="p1IdentityCardIssuedPlace">Nơi cấp</label>
+            <input type="text" class="form-control" id="p1IdentityCardIssuedPlace"
+              data-prefetch="/ajax/identity-card-issued-place" th:field="*{p1IdentityCardIssuedPlace}">
+          </div>
+        </div>
+        <div class="form-row mt-2">
+          <div class="col-md-4">
+            <label for="p1ForeignAddress">Địa chỉ cư trú tại nước ngoài</label>
+
+            <select id="p1ForeignAddress" th:field="*{p1ForeignAddress}" class="form-control" title="Chọn chịa chỉ"
+              required>
+              <option value="" title=""></option>
+              <option value="Thành phố Busan" title="Thành phố Busan">Busan</option>
+              <option value="Tỉnh Chungcheongbuk" title="Tỉnh Chungcheongbuk">Chungcheongbuk</option>
+              <option value="Tỉnh Chungcheongnam" title="Tỉnh Chungcheongnam">Chungcheongnam</option>
+              <option value="Thành phố Daegu" title="Thành phố Daegu">Daegu</option>
+              <option value="Thành phố Daejeon" title="Thành phố Daejeon">Daejeon</option>
+              <option value="Tỉnh Gangwon" title="Tỉnh Gangwon">Gangwon</option>
+              <option value="Thành phố Gwangju" title="Thành phố Gwangju">Gwangju</option>
+              <option value="Tỉnh Gyeonggi" title="Tỉnh Gyeonggi">Gyeonggi</option>
+              <option value="Tỉnh Gyeongsangbuk" title="Tỉnh Gyeongsangbuk">Gyeongsangbuk</option>
+              <option value="Tỉnh Gyeongsangnam" title="Tỉnh Gyeongsangnam">Gyeongsangnam</option>
+              <option value="Thành phố Incheon" title="Thành phố Incheon">Incheon</option>
+              <option value="Tỉnh Jeju" title="Tỉnh Jeju">Jeju</option>
+              <option value="Tỉnh Jeollabuk" title="Tỉnh Jeollabuk">Jeollabuk</option>
+              <option value="Tỉnh Jeollanam" title="Tỉnh Jeollanam">Jeollanam</option>
+              <option value="Thành phố Sejong" title="Thành phố Sejong">Sejong</option>
+              <option value="Thành phố Seoul" title="Thành phố Seoul">Seoul</option>
+              <option value="Thành phố Ulsan" title="Thành phố Ulsan">Ulsan</option>
+            </select>
+          </div>
+
+          <div class="col-md-7">
+            <label for="p1VietnameseAddress">Địa chỉ thường trú ở trong nước trước khi xuất cảnh (3 cấp)</label>
+            <input type="text" class="form-control" id="p1VietnameseAddress" th:field="*{p1VietnameseAddress}" data-prefetch="/ajax/address"
+              placeholder="Xã, huyện, tỉnh (Phường, quận, thành phố)" required>
+          </div>
+        </div>
+
+        <div class="form-row mt-2">
+          <div class="col-md-4">
+            <label for="p1FatherFullName">Cha: họ và tên</label>
+            <input type="text" class="form-control text-capitalize" id="p1FatherFullName" th:field="*{p1FatherFullName}"
+              placeholder="">
+          </div>
+
+          <div class="col-md-2">
+            <label for="p1FatherDateOfBirth">Ngày sinh</label>
+            <input type="text" class="form-control" id="p1FatherDateOfBirth" th:field="*{p1FatherDateOfBirth}"
+              placeholder="__/__/____" maxlength="10">
+          </div>
+        </div>
+        <div class="form-row mt-2">
+          <div class="col-md-4">
+            <label for="p1MotherFullName">Mẹ: họ và tên</label>
+            <input type="text" class="form-control text-capitalize" id="p1MotherFullName" th:field="*{p1MotherFullName}"
+              required>
+          </div>
+
+          <div class="col-md-2">
+            <label for="p1MotherDateOfBirth">Ngày sinh</label>
+            <input type="text" class="form-control" id="p1MotherDateOfBirth" th:field="*{p1MotherDateOfBirth}"
+              placeholder="__/__/____" maxlength="10" required>
+          </div>
+        </div>
+
+        <div class="form-row mt-2">
+          <div class="col-md-3">
+            <label for="p1DepartureDate">Xuất cảnh Việt Nam ngày</label>
+            <input type="text" class="form-control" id="p1DepartureDate" th:field="*{p1DepartureDate}"
+              placeholder="__/__/____" maxlength="10">
+          </div>
+          <div class="col-md-7">
+            <label for="p1DeparturePlace">Qua cửa khẩu</label>
+
+            <select id="p1DeparturePlace" th:field="*{p1DeparturePlace}" class="form-control" title="Chọn cửa khẩu">
+              <option value="" title=""></option>
+              <option value="Buôn Ma Thuột(Đắk Lắk)">Buôn Ma Thuột(Đắk Lắk)</option>
+              <option value="Cam Ranh(Khánh Hòa)">Cam Ranh(Khánh Hòa)</option>
+              <option value="Chu Lai(Quảng Nam)">Chu Lai(Quảng Nam)</option>
+              <option value="Cà Mau(Cà Mau)">Cà Mau(Cà Mau)</option>
+              <option value="Cát Bi(Hải Phòng)">Cát Bi(Hải Phòng)</option>
+              <option value="Côn Đảo(Bà Rịa – Vũng Tàu)">Côn Đảo(Bà Rịa – Vũng Tàu)</option>
+              <option value="Cần Thơ(Cần Thơ)">Cần Thơ(Cần Thơ)</option>
+              <option value="Liên Khương(Lâm Đồng)">Liên Khương(Lâm Đồng)</option>
+              <option value="Nội Bài(Hà Nội)">Nội Bài(Hà Nội)</option>
+              <option value="Phù Cát(Bình Định)">Phù Cát(Bình Định)</option>
+              <option value="Phú Bài(Thừa Thiên Huế)">Phú Bài(Thừa Thiên Huế)</option>
+              <option value="Phú Quốc(Kiên Giang)">Phú Quốc(Kiên Giang)</option>
+              <option value="Pleiku(Gia Lai)">Pleiku(Gia Lai)</option>
+              <option value="Rạch Giá(Kiên Giang)">Rạch Giá(Kiên Giang)</option>
+              <option value="Thọ Xuân(Thanh Hóa)">Thọ Xuân(Thanh Hóa)</option>
+              <option value="Tuy Hòa(Phú Yên)">Tuy Hòa(Phú Yên)</option>
+              <option value="Tân Sơn Nhất(Thành phố Hồ Chí Minh)">Tân Sơn Nhất(Thành phố Hồ Chí Minh)</option>
+              <option value="Vinh(Nghệ An)">Vinh(Nghệ An)</option>
+              <option value="Vân Đồn(Quảng Ninh)">Vân Đồn(Quảng Ninh)</option>
+              <option value="Điện Biên Phủ(Điện Biên)">Điện Biên Phủ(Điện Biên)</option>
+              <option value="Đà Nẵng(Đà Nẵng)">Đà Nẵng(Đà Nẵng)</option>
+              <option value="Đồng Hới(Quảng Bình)">Đồng Hới(Quảng Bình)</option>
+            </select>
+          </div>
+
+
+        </div>
+
+        <div class="form-row mt-4">
+          <div class="col-md-3">
+            <button class="btn btn-primary" type="submit">Submit form</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+
+  <div th:replace="fragments/footer :: footer"></div>
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      "use strict";
+      window.addEventListener("load", function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName("needs-validation");
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener("submit", function (event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add("was-validated");
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      $("#p1PassportIssuedDate").mask("00/00/0000");
+      $("#p1IdentityCardIssuedDate").mask("00/00/0000");
+      $("#p1FatherDateOfBirth").mask("00/00/0000");
+      $("#p1MotherDateOfBirth").mask("00/00/0000");
+      $("#p1DateOfBirth").mask("00/00/0000");
+      $("#p1DepartureDate").mask("00/00/0000");
+
+      $("input[type='text' ]").change(function () {
+        this.value = $.trim(this.value);
+      });
+
+      $("#p1PassportNumber").change(function () {
+        updatePassportIssuedPlace(p1PassportNumber, p1PassportPlaceOfIssued);
+      });
+
+      $("#passportForm").submit(function (e) {
+        event.preventDefault();
+        var req = $("#p1PassportNumber").val().length > 0;
+        $('#p1PassportIssuedDate').prop('required', req);
+        $('#p1PassportPlaceOfIssued').prop('required', req);
+        $('#p1PassportSigner').prop('required', req);
+
+        req = $("#p1IdentityCardNumber").val().length > 0 && $("#p1PassportNumber").val().length == 0
+        $('#p1IdentityCardIssuedDate').prop('required', req);
+        $('#p1IdentityCardIssuedPlace').prop('required', req);
+
+        var formValid = true;
+        $(this).find(":input[required]").each(function () {
+          if (!$(this).val()) {
+            formValid = false;
+            return false;
+          }
+        });
+
+        if (formValid) {
+          this.submit();
+        }
+
+      });
+    });
+
+
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', e => {
+      $('#p1IdentityCardIssuedPlace').autocomplete();
+      $('#p1PassportSigner').autocomplete();
+      $('#p1VietnameseAddress').autocomplete()
+    }, false);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <title>LSHANTHANH - Trang chủ</title>
+
+  <link href="https://getbootstrap.com/docs/4.6/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link href="/css/sticky-footer-navbar.css" rel="stylesheet">
+  <style>
+
+  </style>
+</head>
+
+<body class="d-flex flex-column h-100">
+  <div th:replace="fragments/header :: header"></div>
+  <main role="main" class="flex-shrink-0">
+    <div class="container">
+      <p class="lead mt-5"
+        th:text="'Đăng ký tờ khai thành công. Họ và tên ['+${record.childVietnameseFullName}+'], hồ sơ số [' + ${record.id} +'], mã ['+${record.downloadCode}+']'">
+        </code>.</p>
+
+
+      <p>1. Download <a th:href="@{'/pdf/registration-of-birth/form-1/'+${record.id}+'/'+${record.downloadCode}}"
+          target="_blank"> Tờ khai Khai sinh</a> - <span class="text-danger"> Chú ý, </span>khi in tờ khai Khai sinh,
+        chọn [More settings]/[Actual size] như <a href="/download/form1.jpg" target="_blank">hướng dẫn </a> </p>
+      <p>2. Download <a th:href="@{'/pdf/registration-of-birth/form-2/'+${record.id}+'/'+${record.downloadCode}}"
+          target="_blank"> Tờ khai Hộ chiếu</a></p>
+
+      <p>3. Download <a th:href="@{'/pdf/registration-of-birth/form-3/'+${record.id}+'/'+${record.downloadCode}}"
+          target="_blank"> Tờ khai Cha nhận con</a></p>
+      <p>4. Download <a th:href="@{'/doc/registration-of-birth/doc-1/'+${record.id}+'/'+${record.downloadCode}}"
+          target="_blank"> Bản tường trình </a></p>
+      <p>5. Sửa đổi, bổ sung. Click <a
+          th:href="@{'/registration-of-birth/edit/'+${record.id}+'/'+${record.downloadCode}}">here</a></p>
+
+
+    </div>
+    </div>
+  </main>
+
+  <div th:replace="fragments/footer :: footer"></div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write("<script src='/docs/4.6/assets/js/vendor/jquery.slim.min.js'><\/script>")</script>
+  <script src="/docs/4.6/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

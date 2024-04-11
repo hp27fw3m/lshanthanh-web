@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Address</title>
+</head>
+
+<body>
+    <table>
+
+        <tbody>
+            <tr>
+                <td>do - tỉnh</td>
+            </tr>
+            <tr>
+                <td>si - thành phố</td>
+            </tr>
+            <tr>
+                <td>gun - huyện</td>
+            </tr>
+            <tr>
+                <td>gu - quận</td>
+            </tr>
+            <tr>
+                <td>eup - thị trấn</td>
+            </tr>
+            <tr>
+                <td>myeon - xã</td>
+            </tr>
+            <tr>
+                <td>dong - phường</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Thành phố Seoul</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Thành phố Busan</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Thành phố Daegu</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Thành phố Incheon</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Thành phố Gwangju</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Thành phố Daejeon</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Thành phố Ulsan</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Thành phố Sejong</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Tỉnh Gyeonggi</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Tỉnh Gangwon</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Tỉnh Chungcheongbuk</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Tỉnh Chungcheongnam</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Tỉnh Jeollabuk</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Tỉnh Jeollanam</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Tỉnh Gyeongsangbuk</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Tỉnh Gyeongsangnam</td>
+            </tr>
+            <tr>
+                <td ondblclick="copyCell(this)">Tỉnh Jeju</td>
+            </tr>
+            <tr th:each="item : ${items}">
+                <td ondblclick="copyCell(this)" th:text="${item}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <script>
+        function copyCell(cell) {
+            var textarea = document.createElement("textarea");
+            textarea.value = cell.innerText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            cell.style.backgroundColor = "#c3e6cb";
+            setTimeout(function () {
+                cell.style.backgroundColor = "";
+            }, 100);
+        }
+    </script>
+</body>
+
+</html>
