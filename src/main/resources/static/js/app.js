@@ -6,8 +6,11 @@ function updatePassportIssuedPlace(pNumber, pIssuedPlace) {
         switch (pNumber.value[0].toUpperCase()) {
             case "N":
             case "Q":
+                pIssuedPlace.value = "ĐSQ Việt Nam tại Hàn Quốc";
+                break;
+            case "C":            
             case "K":
-                pIssuedPlace.value = processKPassport(pNumber.value.substring(0, 4));
+                pIssuedPlace.value = processCKPassport(pNumber.value.substring(0, 4));
                 break;
             case "M":
                 pIssuedPlace.value = "Bộ Ngoại giao Hàn Quốc";
@@ -18,7 +21,7 @@ function updatePassportIssuedPlace(pNumber, pIssuedPlace) {
         }
     }
 }
-function processKPassport(prefix) {
+function processCKPassport(prefix) {
     switch (prefix) {
         case "K014":
         case "K015":
